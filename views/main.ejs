@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="w-full h-screen bg-zinc-900 justify-center items-center flex">
-        <button class="mt-10 ml-10 px-4 py-2 bg-blue-600 text-white rounded-lg" onclick="window.location.href='/createyoursurvey'">Create your survey</button>
-        <button class="mt-10 ml-10 px-4 py-2 bg-green-600 text-white rounded-lg">response to survey</button>
+<body class="bg-zinc-900">
 
+    <div class="w-full h-20 text-white py-7 border-2 border-blue-500">
+        <a href="" class="px-4 text-blue-500">home</a>
+        <a href="" class="px-4 text-blue-500">about</a>
+        <a href="" class="px-4 text-blue-500">feature</a>
+        <a href="" class="px-4 text-blue-500">survey</a>
+        <a href="" class="px-4 text-white float-right mr-20 border-2 border-white-500 rounded-lg py-1 bg-green-700">Register</a>
     </div>
-    
+    <div class="w-full h-screen justify-center items-center flex bg-zinc-900 border-2 border-white">
+        <a class="mt-10 ml-10 px-4 py-2 bg-blue-600 text-white rounded-lg" href='/createyoursurvey'>Create your survey</a>
+        <a class="mt-10 ml-10 px-4 py-2 bg-green-600 text-white rounded-lg" href="/readsurvey">response to survey</a>
+    </div>
+
+    <div class="text-white w-82 h-100 border-2 border-white mt-10">
+        <h1 class="">About</h1>
+    </div>
+    <div class="text-white w-82 h-100 border-2 border-white mt-10">
+        <h1 class="">Features</h1>
+    </div>
 </body>
 </html>
