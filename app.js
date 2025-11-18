@@ -28,9 +28,9 @@ app.post('/create',async (req,res)=>{
 });
 
 app.get('/readsurvey',async (req,res)=>{
-    let surveys=await surveyModels.find();
-    res.send(surveys);
-})
+    let allsurvey=await surveyModels.find();
+    res.render('all_surveys',{surveys:allsurvey});
+});
 
 app.listen(3000);
 // MERN mongoDB express react nodejs
