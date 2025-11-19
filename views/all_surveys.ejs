@@ -6,11 +6,11 @@
     <title>Document</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="w-full h-screen bg-zinc-900">
-    <h2 class="text-white">ANYONE CAN RESPOND TO THESE SURVEYS</h2>
-    <a class="text-blue-500" href="/">back home</a>
-    <div class="surveys flex gap-3 flex-rap">
+<body class="bg-zinc-900">
+    <div class="w-full h-screen">
+    <h2 class="text-white mt-10">ANYONE CAN RESPOND TO THESE SURVEYS</h2>
+    <a class="text-blue-500 mt-10" href="/">back home</a>
+    <div class="surveys flex gap-3 flex-wrap">
     <% surveys.forEach(function(survey){%>
                 <div class="h-82 w-72 bg-zinc-700 text-white m-10 p-5 inline-block rounded-lg border-2 border-zinc-400">
                 <h3 class=""><%= survey.name %></h3>
@@ -20,7 +20,7 @@
                 <p><%= survey.field %></p>
                 <p>------------------------------------</p>
                 <p><%= survey.target_audience %></p>
-                <a class="text-blue-500">click to response</a>
+                <a href="" class="text-blue-500">click to response</a>
             </div>
         <%})%>
         </div>

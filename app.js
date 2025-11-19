@@ -24,7 +24,7 @@ app.post('/create',async (req,res)=>{
         field:category,
         target_audience:target
            });
-           res.send(survey);
+           res.redirect('/createyoursurvey');
 });
 
 app.get('/readsurvey',async (req,res)=>{
