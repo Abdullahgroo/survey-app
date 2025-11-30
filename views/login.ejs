@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="w-full h-screen bg-zinc-900 p-10">
+        <div class="h-72 w-72 rounded-lg p-7">
+    <form action="/user" method="post">
+        <input class="bg-zinc-400 rounded-lg p-3 mb-5 w-92" type="email" name="email" placeholder="email">
+         <input class="bg-zinc-400 rounded-lg p-3 mb-5 w-92" type="passward" name="passward" placeholder="passward">
+         <input class="bg-green-600 rounded-lg p-2" type="submit" value="submit">
+    </form>
+
+    <div class="mt-5 text-blue">
+        <a class="text-blue-500" href="/register">create account</a>
+    </div>
+    </div>
+</body>
+</html>
