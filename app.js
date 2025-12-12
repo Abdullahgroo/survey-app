@@ -5,35 +5,44 @@ const surveyModels=require('./models/survey');
 const userModels=require('./models/user');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+const cookieParser=require("cookie-parser");
+const secret= "abdulboom";
+app.use(cookieParser());
 
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
+
 app.get('/',(req,res)=>{
     res.render('main');
 });
-
-
 app.get('/login',(req,res)=>{
     res.render('login');
 });
-app.post('/user',async (req,res)=>{
+ 
+app.get('/logout',(req,res)=>{
+    res.cookie("token","");
+    res.redirect("/login");
+});
+app.post('/login',isLoggedIn,async (req,res)=>{
     let {email,passward}=req.body;
     let user=await userModels.findOne({email});
     if(!user) return res.status(500).send("something went wrong");
-           
+        
     bcrypt.compare(passward,user.passward,(err,result)=>{
-        if(result) return res.status(500).redirect('/profile');
+        if(result){ 
+            let token=jwt.sign({email: email},"abdulboom");
+            res.cookie("token",token);
+            res.render("profile");
+        }
         else res.redirect('/login');
     });
     });
 
-    app.get('/profile',isLoggedIn,async (req,res)=>{
-        let user= await userModels.findOne({email: req.user.email});
-        console.log(user);
-        res.render('profile');
+    app.get('/profile',(req,res)=>{
+            res.render("profile");
     });
 
 app.get('/register',(req,res)=>{
@@ -50,9 +59,17 @@ app.post('/register',async (req,res)=>{
                 email,
                 passward:hash
             });
+            let token = jwt.sign({email: email},"abdulboom");
+            res.cookie("token",token);
+            res.send("registered");
         });
     });
 });
+
+app.get('/yoursurveys',(req,res)=>{
+    res.render('yoursurveys');
+});
+
 
 
 app.get('/createyoursurvey',(req,res)=>{
@@ -62,12 +79,12 @@ app.get('/createyoursurvey',(req,res)=>{
 app.post('/create',async (req,res)=>{
     let {title,description,category,target}=req.body;
     let survey=await surveyModels.create({
-        name:title,
-        description:description,
-        field:category,
-        target_audience:target
+        title:title,
+        description,
+        category,
+        target
            });
-           res.redirect('/createyoursurvey');
+           res.redirect('/readsurvey');
 });
 
 
@@ -76,18 +93,15 @@ app.get('/readsurvey',async (req,res)=>{
     res.render('all_surveys',{surveys:allsurvey});
 });
 
-function isLoggedIn(req, res, next) {
-    const token = req.cookies.token;
-    if (!token) return res.redirect('/login');
-
-    try {
-        const user = jwt.verify(token, 'YOUR_SECRET');
-        req.user = user;
-        next();
-    } catch (err) {
-        return res.redirect('/login');
+function isLoggedIn(req,res,next){
+    if(req.cookies.token === "") res.send("you must be logged in");
+    else{
+        let data=jwt.verify(req.cookies.token,"abdulboom");
+        req.user = data;    
+    next();
     }
 }
+
 
 app.listen(3000);
 // MERN mongoDB express react nodejs

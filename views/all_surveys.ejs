@@ -13,13 +13,13 @@
     <div class="surveys flex gap-3 flex-wrap">
     <% surveys.forEach(function(survey){%>
                 <div class="h-82 w-72 bg-zinc-700 text-white m-10 p-5 inline-block rounded-lg border-2 border-zinc-400">
-                <h3 class=""><%= survey.name %></h3>
+                <h3 class=""><%= survey.title %></h3>
                 <p>------------------------------------</p>
                 <p><%= survey.description %></p>
                 <p>------------------------------------</p>
-                <p><%= survey.field %></p>
+                <p><%= survey.category %></p>
                 <p>------------------------------------</p>
-                <p><%= survey.target_audience %></p>
+                <p><%= survey.target %></p>
                 <a href="" class="text-blue-500">click to response</a>
             </div>
         <%})%>
