@@ -3,30 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Public Surveys</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-zinc-900">
-    <div class="w-full h-screen">
-    <h2 class="text-white mt-10">ANYONE CAN RESPOND TO THESE SURVEYS</h2>
-    <a class="text-blue-500 mt-10" href="/">back home</a>
-    <div class="surveys flex gap-3 flex-wrap">
-    <% surveys.forEach(function(survey){%>
-                <div class="h-82 w-72 bg-zinc-700 text-white m-10 p-5 inline-block rounded-lg border-2 border-zinc-400">
-                <h3 class=""><%= survey.title %></h3>
-                <p>------------------------------------</p>
-                <p><%= survey.description %></p>
-                <p>------------------------------------</p>
-                <p><%= survey.category %></p>
-                <p>------------------------------------</p>
-                <p><%= survey.target %></p>
-                <a href="" class="text-blue-500">click to response</a>
+<body class="bg-slate-950 text-white min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold">Available Surveys</h2>
+            <a class="text-blue-400 hover:text-blue-300" href="/">Back home</a>
+        </div>
+
+        <% if (!surveys || surveys.length === 0) { %>
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
+                <p class="text-xl">No surveys are available right now.</p>
             </div>
-        <%})%>
-        </div>
-        <div>
-            
-        </div>
+        <% } else { %>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <% surveys.forEach(function(survey){ %>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
+                        <p class="text-sm uppercase tracking-wide text-pink-300 mb-2"><%= survey.category %></p>
+                        <h3 class="text-2xl font-semibold mb-3"><%= survey.title %></h3>
+                        <p class="text-slate-300 mb-4"><%= survey.description %></p>
+                        <div class="border-t border-white/10 pt-3 text-sm text-slate-400 space-y-2">
+                            <p><strong>Target:</strong> <%= survey.target %></p>
+                            <p><strong>Created:</strong> <%= new Date(survey.date).toLocaleDateString() %></p>
+                        </div>
+                        <a href="/survey/<%= survey._id %>/respond" class="inline-block mt-5 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg transition">Click to respond</a>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
     </div>
 </body>
 </html>

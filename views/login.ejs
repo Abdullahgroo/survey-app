@@ -6,18 +6,26 @@
     <title>Login</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="w-full h-screen bg-zinc-900 p-10">
-        <div class="h-72 w-72 rounded-lg p-7">
-    <form action="/login" method="post">
-        <input class="bg-zinc-400 rounded-lg p-3 mb-5 w-92" type="email" name="email" placeholder="email">
-         <input class="bg-zinc-400 rounded-lg p-3 mb-5 w-92" type="passward" name="passward" placeholder="passward">
-         <input class="bg-green-600 rounded-lg p-2" type="submit" value="submit">
-    </form>
+<body class="bg-slate-950 text-white min-h-screen flex items-center justify-center">
+    <% if (error) { %>
+        <script>
+            alert('<%= error %>');
+        </script>
+    <% } %>
 
-    <div class="mt-5 text-blue">
-        <a class="text-blue-500" href="/register">create account</a>
-    </div>
+    <div class="w-full max-w-md bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl backdrop-blur-sm">
+        <h1 class="text-3xl font-bold mb-2">Welcome back</h1>
+        <p class="text-slate-300 mb-6">Sign in to your account</p>
+
+        <form action="/login" method="post" class="space-y-4">
+            <input class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" type="email" name="email" placeholder="Email" required>
+            <input class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" type="password" name="password" placeholder="Password" required>
+            <button class="w-full bg-gradient-to-r from-green-400 to-emerald-500 text-slate-900 font-bold py-3 rounded-xl hover:opacity-90 transition" type="submit">Login</button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <a class="text-blue-400 hover:text-blue-300 underline" href="/register">Create account</a>
+        </div>
     </div>
 </body>
 </html>

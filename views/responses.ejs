@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Responses</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-950 text-white min-h-screen">
+    <div class="max-w-4xl mx-auto px-6 py-10">
+        <div class="flex items-center justify-between mb-8 gap-4">
+            <div>
+                <p class="text-sm uppercase tracking-wide text-pink-300">Responses</p>
+                <h1 class="text-3xl font-bold mt-2"><%= survey.title %></h1>
+            </div>
+            <a href="/yoursurveys" class="text-blue-400 hover:text-blue-300">Back to your surveys</a>
+        </div>
+
+        <% if (!survey.responses || survey.responses.length === 0) { %>
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
+                <p class="text-xl">No responses yet.</p>
+                <p class="text-slate-400 mt-2">Responses will appear here when people submit them.</p>
+            </div>
+        <% } else { %>
+            <div class="space-y-4">
+                <% survey.responses.slice().reverse().forEach(function(response, index) { %>
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                        <div class="flex items-center justify-between gap-4 mb-3">
+                            <p class="text-sm text-slate-400">Response <%= survey.responses.length - index %></p>
+                            <p class="text-sm text-slate-500"><%= new Date(response.date).toLocaleString() %></p>
+                        </div>
+                        <p class="text-slate-100 whitespace-pre-wrap"><%= response.text %></p>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

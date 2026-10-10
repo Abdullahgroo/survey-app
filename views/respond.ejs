@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respond to Survey</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-950 text-white min-h-screen">
+    <div class="max-w-2xl mx-auto px-6 py-12">
+        <a href="/readsurvey" class="text-blue-400 hover:text-blue-300">Back to surveys</a>
+
+        <div class="mt-8 bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl">
+            <p class="text-sm uppercase tracking-wide text-pink-300 mb-2"><%= survey.category %></p>
+            <h1 class="text-3xl font-bold mb-3"><%= survey.title %></h1>
+            <p class="text-slate-300 mb-8"><%= survey.description %></p>
+
+            <% if (submitted) { %>
+                <div class="bg-emerald-500/15 border border-emerald-400/40 text-emerald-200 rounded-xl p-4">
+                    Your response was submitted successfully.
+                </div>
+                <a href="/readsurvey" class="inline-block mt-6 bg-blue-600 hover:bg-blue-500 px-5 py-3 rounded-xl font-semibold">Back to surveys</a>
+            <% } else { %>
+                <form action="/survey/<%= survey._id %>/respond" method="post" class="space-y-4">
+                    <label for="text" class="block text-sm font-semibold text-slate-200">Your response</label>
+                    <textarea id="text" name="text" rows="8" maxlength="2000" required placeholder="Write your response here..." class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-500 px-5 py-3 rounded-xl font-semibold transition">Submit response</button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

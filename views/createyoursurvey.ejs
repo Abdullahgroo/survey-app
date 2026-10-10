@@ -3,29 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Survey</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="w-full h-screen bg-zinc-900 p-10">
-        <h1 class="text-lg text-white mb-10">CREATE YOUR OWN SURVEY</h1>
-        <form action="/create" method="post">
-            <input class="mb-5 w-90 px-4 py-2 border-2 border-zinc-400 rounded-lg bg-zinc-600 text-white" type="text" name="title" placeholder="Survey Name"><br>
-            <textarea class="mb-5 px-3 py-4 w-90 h-30 border-2 border-zinc-400 rounded-lg bg-zinc-600 text-white" type="text" name="description" placeholder="Enter Discription"></textarea><br>
-            <select class="block mb-5 px-4  w-90 py-2 text-white border-3 border-blue-500 bg-zinc-900 rounded-lg bg-zinc-700" name="category">
+<body class="bg-slate-950 text-white min-h-screen">
+    <div class="max-w-3xl mx-auto px-6 py-12">
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-3xl font-bold">Create Your Survey</h1>
+            <a href="/profile" class="text-blue-400 hover:text-blue-300">Back to dashboard</a>
+        </div>
+
+        <form action="/create" method="post" class="bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl space-y-5">
+            <input class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" type="text" name="title" placeholder="Survey Name" required>
+
+            <textarea class="w-full h-36 bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" name="description" placeholder="Enter description" required></textarea>
+
+            <select class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" name="category" required>
                 <option value="education">Education</option>
                 <option value="sports">Sports</option>
-                <option value="tcnology">Tecnology</option>
-                <option value="health">Health</option> 
-                <option value="health">Business</option>
-                <option value="health">Environment</option>
-                <option value="health">event/entertainment</option>                    
+                <option value="technology">Technology</option>
+                <option value="health">Health</option>
+                <option value="business">Business</option>
+                <option value="environment">Environment</option>
+                <option value="entertainment">Entertainment</option>
             </select>
-            <input class="block mb-5 px-4 py-2 w-90 border-2 border-zinc-400 rounded-lg bg-zinc-600 text-white" type="text" placeholder="target audience" name="target">
-            <input class="block mb-5 px-4 py-2 border-2 border-yellow-800 rounded-lg bg-yellow-600 text-white" type="submit" value="create">
+
+            <input class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" type="text" placeholder="Target audience" name="target" required>
+
+            <button class="bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 font-bold py-3 px-6 rounded-xl hover:opacity-90 transition" type="submit">Create Survey</button>
         </form>
-        <a class="px-1 py-2 text-blue-500 border-2 border-blue-500 rounded-lg" href="/">back to home</a>
     </div>
-    
 </body>
 </html>
